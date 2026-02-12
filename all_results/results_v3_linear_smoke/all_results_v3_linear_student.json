@@ -1,0 +1,133 @@
+{
+  "version": "v3_linear_student",
+  "config": {
+    "data_dir": "FinancialPhraseBank-v1.0",
+    "results_dir": "results_v3_linear_smoke",
+    "max_features": 50000,
+    "ngram_min": 1,
+    "ngram_max": 2,
+    "min_df": 2,
+    "c": 6.0,
+    "test_split": 0.2,
+    "val_split": 0.2,
+    "target_retention": 0.95,
+    "max_teacher_pct": 30.0,
+    "n_bootstrap": 100,
+    "seed": 42
+  },
+  "threshold_optimization": {
+    "validation_teacher_acc": 0.8925619834710744,
+    "opt_results": {
+      "0.0": {
+        "tau": 0.98,
+        "accuracy": 0.8925619834710744,
+        "f1_macro": 0.8890923325757337,
+        "finbert_pct": 96.28099173553719,
+        "vader_pct": 3.71900826446281,
+        "cost": 0.1074380165289256
+      },
+      "0.01": {
+        "tau": 0.98,
+        "accuracy": 0.8925619834710744,
+        "f1_macro": 0.8890923325757337,
+        "finbert_pct": 96.28099173553719,
+        "vader_pct": 3.71900826446281,
+        "cost": 0.11706611570247931
+      },
+      "0.05": {
+        "tau": 0.81,
+        "accuracy": 0.8822314049586777,
+        "f1_macro": 0.8750823272853022,
+        "finbert_pct": 49.3801652892562,
+        "vader_pct": 50.6198347107438,
+        "cost": 0.1424586776859504
+      },
+      "0.1": {
+        "tau": 0.81,
+        "accuracy": 0.8822314049586777,
+        "f1_macro": 0.8750823272853022,
+        "finbert_pct": 49.3801652892562,
+        "vader_pct": 50.6198347107438,
+        "cost": 0.16714876033057852
+      },
+      "0.2": {
+        "tau": 0.61,
+        "accuracy": 0.8378099173553719,
+        "f1_macro": 0.8133749358107959,
+        "finbert_pct": 21.694214876033058,
+        "vader_pct": 78.30578512396694,
+        "cost": 0.2055785123966942
+      },
+      "0.5": {
+        "tau": 0.38,
+        "accuracy": 0.7582644628099173,
+        "f1_macro": 0.6801669995773034,
+        "finbert_pct": 0.2066115702479339,
+        "vader_pct": 99.79338842975206,
+        "cost": 0.24276859504132234
+      }
+    },
+    "target_operating_point": {
+      "tau": 0.67,
+      "accuracy": 0.8502066115702479,
+      "finbert_pct": 28.305785123966942,
+      "meets_target": true
+    },
+    "selected_tau": 0.67
+  },
+  "expA_baselines": {
+    "VADER": {
+      "accuracy": 0.5454545454545454,
+      "f1_macro": 0.4986070494880838,
+      "avg_time_ms": 0.06307452178198444
+    },
+    "LinearStudent": {
+      "accuracy": 0.768595041322314,
+      "f1_macro": 0.7136811694412962,
+      "avg_time_ms": 0.026883172594811308
+    },
+    "FinBERT": {
+      "accuracy": 0.881198347107438,
+      "f1_macro": 0.8720214897085038,
+      "avg_time_ms": 3.160121273403325
+    }
+  },
+  "expB_hypothesis": {
+    "teacher_accuracy": 0.881198347107438,
+    "teacher_f1": 0.8720214897085038,
+    "hybrid_accuracy": 0.8450413223140496,
+    "hybrid_f1": 0.8210890924229809,
+    "accuracy_retention": 0.958968347010551,
+    "teacher_usage_pct": 29.44214876033058,
+    "selected_tau": 0.67,
+    "target_retention": 0.95,
+    "target_max_teacher_pct": 30.0,
+    "hypothesis_accuracy_met": true,
+    "hypothesis_cost_met": true,
+    "ci_retention_95": [
+      0.9346684090344123,
+      0.9835619124452363
+    ],
+    "ci_teacher_usage_95": [
+      26.28873966942149,
+      32.35020661157024
+    ],
+    "mcnemar_statistic": 8.562962962962963,
+    "mcnemar_p_value": 0.003430706168790265
+  },
+  "expC_efficiency": {
+    "FinBERT": {
+      "total_time": 3.058997392654419,
+      "throughput": 316.4435518397177
+    },
+    "LinearStudent": {
+      "total_time": 0.026022911071777344,
+      "throughput": 37197.990544948145
+    },
+    "Hybrid-v3-linear": {
+      "total_time": 0.9685642719268799,
+      "throughput": 999.4174140599288,
+      "teacher_usage_pct": 29.44214876033058
+    }
+  }
+}

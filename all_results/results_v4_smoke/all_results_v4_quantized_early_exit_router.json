@@ -1,0 +1,460 @@
+{
+  "version": "v4_quantized_early_exit_xgboost_router",
+  "config": {
+    "data_dir": "FinancialPhraseBank-v1.0",
+    "results_dir": "results_v4_smoke",
+    "model_name": "ProsusAI/finbert",
+    "exit_layer": 4,
+    "max_length": 128,
+    "batch_size": 32,
+    "test_split": 0.2,
+    "val_split": 0.2,
+    "router_trees": 120,
+    "router_max_depth": 6,
+    "router_learning_rate": 0.05,
+    "router_subsample": 0.9,
+    "router_colsample": 0.9,
+    "router_min_child_weight": 1.0,
+    "router_reg_lambda": 1.0,
+    "target_retention": 0.98,
+    "max_layer_fraction": 0.35,
+    "cost_lambda": 0.35,
+    "tau_min": 0.05,
+    "tau_max": 0.99,
+    "tau_steps": 35,
+    "n_bootstrap": 200,
+    "demo_text": "Revenue fell, but strategic guidance remains strong.",
+    "seed": 42
+  },
+  "model": {
+    "backbone": "ProsusAI/finbert",
+    "quantized_int8_dynamic": true,
+    "exit_layer": 4,
+    "num_hidden_layers": 12,
+    "router_feature_names": [
+      "layer4_logit_negative",
+      "layer4_logit_neutral",
+      "layer4_logit_positive",
+      "hedge_count"
+    ]
+  },
+  "training": {
+    "early_exit_head": {
+      "type": "LogisticRegression(multinomial)",
+      "train_accuracy": 0.8256374913852516
+    },
+    "router": {
+      "type": "xgboost",
+      "train_reliable_rate": 0.8256374913852516,
+      "feature_importance": {
+        "layer4_logit_negative": 0.25169646739959717,
+        "layer4_logit_neutral": 0.2864956557750702,
+        "layer4_logit_positive": 0.28653717041015625,
+        "hedge_count": 0.17527073621749878
+      }
+    }
+  },
+  "threshold_selection": {
+    "validation_full_accuracy": 0.8657024793388429,
+    "selected_tau": 0.7411764705882353,
+    "selected_point": {
+      "tau": 0.7411764705882353,
+      "accuracy": 0.7789256198347108,
+      "retention": 0.8997613365155132,
+      "early_exit_pct": 70.76446280991735,
+      "avg_layers": 6.338842975206611,
+      "layer_fraction": 0.5282369146005509,
+      "cost": 0.40595730027548205
+    },
+    "sweep": [
+      {
+        "tau": 0.05,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 100.0,
+        "avg_layers": 4.0,
+        "layer_fraction": 0.3333333333333333,
+        "cost": 0.43174931129476585
+      },
+      {
+        "tau": 0.07764705882352942,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 100.0,
+        "avg_layers": 4.0,
+        "layer_fraction": 0.3333333333333333,
+        "cost": 0.43174931129476585
+      },
+      {
+        "tau": 0.10529411764705882,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 100.0,
+        "avg_layers": 4.0,
+        "layer_fraction": 0.3333333333333333,
+        "cost": 0.43174931129476585
+      },
+      {
+        "tau": 0.13294117647058823,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 100.0,
+        "avg_layers": 4.0,
+        "layer_fraction": 0.3333333333333333,
+        "cost": 0.43174931129476585
+      },
+      {
+        "tau": 0.16058823529411764,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 100.0,
+        "avg_layers": 4.0,
+        "layer_fraction": 0.3333333333333333,
+        "cost": 0.43174931129476585
+      },
+      {
+        "tau": 0.18823529411764706,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 100.0,
+        "avg_layers": 4.0,
+        "layer_fraction": 0.3333333333333333,
+        "cost": 0.43174931129476585
+      },
+      {
+        "tau": 0.21588235294117647,
+        "accuracy": 0.6859504132231405,
+        "retention": 0.7923627684964202,
+        "early_exit_pct": 99.79338842975206,
+        "avg_layers": 4.016528925619834,
+        "layer_fraction": 0.33471074380165283,
+        "cost": 0.43119834710743793
+      },
+      {
+        "tau": 0.24352941176470588,
+        "accuracy": 0.6859504132231405,
+        "retention": 0.7923627684964202,
+        "early_exit_pct": 99.69008264462809,
+        "avg_layers": 4.024793388429752,
+        "layer_fraction": 0.3353994490358127,
+        "cost": 0.4314393939393939
+      },
+      {
+        "tau": 0.2711764705882353,
+        "accuracy": 0.6859504132231405,
+        "retention": 0.7923627684964202,
+        "early_exit_pct": 99.69008264462809,
+        "avg_layers": 4.024793388429752,
+        "layer_fraction": 0.3353994490358127,
+        "cost": 0.4314393939393939
+      },
+      {
+        "tau": 0.2988235294117647,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 99.48347107438018,
+        "avg_layers": 4.041322314049587,
+        "layer_fraction": 0.3367768595041323,
+        "cost": 0.4329545454545455
+      },
+      {
+        "tau": 0.32647058823529407,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 99.17355371900827,
+        "avg_layers": 4.066115702479339,
+        "layer_fraction": 0.33884297520661155,
+        "cost": 0.4336776859504132
+      },
+      {
+        "tau": 0.3541176470588235,
+        "accuracy": 0.6859504132231405,
+        "retention": 0.7923627684964202,
+        "early_exit_pct": 98.55371900826447,
+        "avg_layers": 4.115702479338843,
+        "layer_fraction": 0.34297520661157027,
+        "cost": 0.434090909090909
+      },
+      {
+        "tau": 0.3817647058823529,
+        "accuracy": 0.6869834710743802,
+        "retention": 0.7935560859188545,
+        "early_exit_pct": 98.24380165289256,
+        "avg_layers": 4.140495867768595,
+        "layer_fraction": 0.3450413223140496,
+        "cost": 0.4337809917355372
+      },
+      {
+        "tau": 0.4094117647058823,
+        "accuracy": 0.6869834710743802,
+        "retention": 0.7935560859188545,
+        "early_exit_pct": 97.93388429752066,
+        "avg_layers": 4.165289256198347,
+        "layer_fraction": 0.3471074380165289,
+        "cost": 0.43450413223140494
+      },
+      {
+        "tau": 0.4370588235294117,
+        "accuracy": 0.6849173553719008,
+        "retention": 0.7911694510739857,
+        "early_exit_pct": 97.52066115702479,
+        "avg_layers": 4.198347107438017,
+        "layer_fraction": 0.3498622589531681,
+        "cost": 0.43753443526170804
+      },
+      {
+        "tau": 0.46470588235294114,
+        "accuracy": 0.6869834710743802,
+        "retention": 0.7935560859188545,
+        "early_exit_pct": 97.10743801652893,
+        "avg_layers": 4.231404958677686,
+        "layer_fraction": 0.3526170798898072,
+        "cost": 0.4364325068870523
+      },
+      {
+        "tau": 0.49235294117647055,
+        "accuracy": 0.6869834710743802,
+        "retention": 0.7935560859188545,
+        "early_exit_pct": 95.66115702479338,
+        "avg_layers": 4.347107438016529,
+        "layer_fraction": 0.3622589531680441,
+        "cost": 0.43980716253443525
+      },
+      {
+        "tau": 0.52,
+        "accuracy": 0.6931818181818182,
+        "retention": 0.8007159904534608,
+        "early_exit_pct": 93.69834710743802,
+        "avg_layers": 4.5041322314049586,
+        "layer_fraction": 0.3753443526170799,
+        "cost": 0.4381887052341597
+      },
+      {
+        "tau": 0.5476470588235294,
+        "accuracy": 0.7004132231404959,
+        "retention": 0.8090692124105013,
+        "early_exit_pct": 91.21900826446281,
+        "avg_layers": 4.702479338842975,
+        "layer_fraction": 0.3918732782369146,
+        "cost": 0.43674242424242415
+      },
+      {
+        "tau": 0.5752941176470588,
+        "accuracy": 0.7179752066115702,
+        "retention": 0.8293556085918855,
+        "early_exit_pct": 88.63636363636364,
+        "avg_layers": 4.909090909090909,
+        "layer_fraction": 0.4090909090909091,
+        "cost": 0.42520661157024797
+      },
+      {
+        "tau": 0.6029411764705882,
+        "accuracy": 0.7272727272727273,
+        "retention": 0.8400954653937949,
+        "early_exit_pct": 86.05371900826447,
+        "avg_layers": 5.115702479338843,
+        "layer_fraction": 0.4263085399449036,
+        "cost": 0.42193526170798895
+      },
+      {
+        "tau": 0.6305882352941177,
+        "accuracy": 0.7324380165289256,
+        "retention": 0.8460620525059666,
+        "early_exit_pct": 83.67768595041323,
+        "avg_layers": 5.305785123966943,
+        "layer_fraction": 0.44214876033057854,
+        "cost": 0.4223140495867769
+      },
+      {
+        "tau": 0.658235294117647,
+        "accuracy": 0.7520661157024794,
+        "retention": 0.8687350835322197,
+        "early_exit_pct": 80.37190082644628,
+        "avg_layers": 5.570247933884298,
+        "layer_fraction": 0.4641873278236915,
+        "cost": 0.4103994490358126
+      },
+      {
+        "tau": 0.6858823529411765,
+        "accuracy": 0.7603305785123967,
+        "retention": 0.8782816229116945,
+        "early_exit_pct": 77.1694214876033,
+        "avg_layers": 5.8264462809917354,
+        "layer_fraction": 0.4855371900826446,
+        "cost": 0.4096074380165289
+      },
+      {
+        "tau": 0.7135294117647059,
+        "accuracy": 0.7696280991735537,
+        "retention": 0.8890214797136038,
+        "early_exit_pct": 74.07024793388429,
+        "avg_layers": 6.074380165289256,
+        "layer_fraction": 0.5061983471074379,
+        "cost": 0.4075413223140496
+      },
+      {
+        "tau": 0.7411764705882353,
+        "accuracy": 0.7789256198347108,
+        "retention": 0.8997613365155132,
+        "early_exit_pct": 70.76446280991735,
+        "avg_layers": 6.338842975206611,
+        "layer_fraction": 0.5282369146005509,
+        "cost": 0.40595730027548205
+      },
+      {
+        "tau": 0.7688235294117647,
+        "accuracy": 0.7861570247933884,
+        "retention": 0.9081145584725537,
+        "early_exit_pct": 67.4586776859504,
+        "avg_layers": 6.6033057851239665,
+        "layer_fraction": 0.5502754820936638,
+        "cost": 0.4064393939393939
+      },
+      {
+        "tau": 0.7964705882352942,
+        "accuracy": 0.7933884297520661,
+        "retention": 0.9164677804295943,
+        "early_exit_pct": 63.84297520661158,
+        "avg_layers": 6.892561983471075,
+        "layer_fraction": 0.5743801652892563,
+        "cost": 0.40764462809917357
+      },
+      {
+        "tau": 0.8241176470588235,
+        "accuracy": 0.7995867768595041,
+        "retention": 0.9236276849642004,
+        "early_exit_pct": 60.64049586776859,
+        "avg_layers": 7.148760330578513,
+        "layer_fraction": 0.5957300275482095,
+        "cost": 0.40891873278236923
+      },
+      {
+        "tau": 0.851764705882353,
+        "accuracy": 0.8088842975206612,
+        "retention": 0.9343675417661098,
+        "early_exit_pct": 57.33471074380165,
+        "avg_layers": 7.413223140495868,
+        "layer_fraction": 0.6177685950413223,
+        "cost": 0.4073347107438017
+      },
+      {
+        "tau": 0.8794117647058823,
+        "accuracy": 0.8099173553719008,
+        "retention": 0.9355608591885441,
+        "early_exit_pct": 52.99586776859504,
+        "avg_layers": 7.760330578512397,
+        "layer_fraction": 0.6466942148760331,
+        "cost": 0.41642561983471077
+      },
+      {
+        "tau": 0.9070588235294118,
+        "accuracy": 0.8223140495867769,
+        "retention": 0.9498806682577566,
+        "early_exit_pct": 47.107438016528924,
+        "avg_layers": 8.231404958677686,
+        "layer_fraction": 0.6859504132231405,
+        "cost": 0.41776859504132224
+      },
+      {
+        "tau": 0.9347058823529412,
+        "accuracy": 0.8357438016528925,
+        "retention": 0.9653937947494033,
+        "early_exit_pct": 39.9793388429752,
+        "avg_layers": 8.801652892561984,
+        "layer_fraction": 0.7334710743801653,
+        "cost": 0.42097107438016534
+      },
+      {
+        "tau": 0.9623529411764705,
+        "accuracy": 0.8460743801652892,
+        "retention": 0.977326968973747,
+        "early_exit_pct": 29.75206611570248,
+        "avg_layers": 9.6198347107438,
+        "layer_fraction": 0.8016528925619834,
+        "cost": 0.43450413223140494
+      },
+      {
+        "tau": 0.99,
+        "accuracy": 0.8636363636363636,
+        "retention": 0.9976133651551313,
+        "early_exit_pct": 8.884297520661157,
+        "avg_layers": 11.289256198347108,
+        "layer_fraction": 0.940771349862259,
+        "cost": 0.465633608815427
+      }
+    ]
+  },
+  "test_metrics": {
+    "full_accuracy": 0.859504132231405,
+    "full_f1": 0.8448059228351794,
+    "hybrid_accuracy": 0.7799586776859504,
+    "hybrid_f1": 0.7310895404518757,
+    "accuracy_retention": 0.907451923076923,
+    "early_exit_pct": 69.62809917355372,
+    "deferred_pct": 30.37190082644628,
+    "avg_layers_used": 6.429752066115703,
+    "layer_fraction": 0.5358126721763086,
+    "approx_speedup_vs_full": 1.8663239074550126,
+    "meets_retention_target": false,
+    "meets_layer_budget": false,
+    "ci_retention_95": [
+      0.8819618935734612,
+      0.9323034477375189
+    ],
+    "ci_deferred_pct_95": [
+      27.264979338842974,
+      33.060433884297524
+    ],
+    "mcnemar_statistic": 43.42857142857143,
+    "mcnemar_p_value": 4.397204822481626e-11
+  },
+  "efficiency": {
+    "full_quantized_finbert_time_s": 21.933091163635254,
+    "full_quantized_finbert_throughput": 44.13422589538724,
+    "hybrid_time_s": 12.204731941223145,
+    "hybrid_throughput": 79.31349944118381,
+    "runtime_speedup_vs_full": 1.7970973282545641,
+    "stage_times_s": {
+      "stage1_layers_1_4": 7.040597200393677,
+      "router": 0.03802967071533203,
+      "stage2_layers_5_12": 5.126105070114136
+    },
+    "staged_avg_layers_used": 6.429752066115703
+  },
+  "memory": {
+    "fp32_model_size_mb": 417.7250061035156,
+    "int8_model_size_mb": 173.08617401123047,
+    "int8_size_ratio_vs_fp32": 0.4143543515044879,
+    "int8_size_reduction_pct": 58.56456484955122
+  },
+  "demo_case": {
+    "text": "Revenue fell, but strategic guidance remains strong.",
+    "layer4_logits": [
+      -1.7369246139652454,
+      0.9287834537598874,
+      0.8081411602055979
+    ],
+    "layer4_probs": [
+      0.03555910461484121,
+      0.5112733089999596,
+      0.45316758638519933
+    ],
+    "layer4_prediction": "neutral",
+    "hedge_count": 1.0,
+    "hedge_hits": [
+      "but"
+    ],
+    "router_prob_reliable": 0.7122872471809387,
+    "tau": 0.7411764705882353,
+    "router_decision": "CONTINUE_DEEP",
+    "final_prediction": "negative",
+    "path_layers": "1-12"
+  },
+  "sanity": {
+    "runtime_prediction_mismatch_count": 13,
+    "test_full_logits_shape": [
+      968,
+      3
+    ]
+  }
+}
