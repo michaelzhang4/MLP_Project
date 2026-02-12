@@ -1,9 +1,14 @@
 torch>=2.0.0
-transformers>=4.30.0
+transformers<4.49.0
 setfit>=1.0.0
 vaderSentiment>=3.3.2
 scikit-learn>=1.3.0
 pandas>=2.0.0
-numpy = 1.26.4
+numpy==1.26.4
 datasets>=2.14.0
 sentence-transformers>=2.2.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+scipy>=1.11.0
+tqdm>=4.65.0
+textblob>=0.17.1
