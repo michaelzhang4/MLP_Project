@@ -1,0 +1,25 @@
+# Fine-tuned model weights (too large for GitHub — regenerate via scripts)
+deberta_finetuned/
+neobert_finetuned/
+
+# Python caches
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+
+# Claude config
+.claude/
+
+# Personal notes (not needed to run experiments)
+commands.txt
+coursework_description.txt
+ideas.txt
+tdo.txt
+submission_instructions.txt
+PUBLICATION_UPGRADE_PLAN.md
+
+# Report sources
+mlp-cw3_4-report.tex
+refs.bib

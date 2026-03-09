@@ -1,0 +1,791 @@
+{
+  "backbone": "NeoBERT (fine-tuned)",
+  "model_path": "neobert_finetuned",
+  "num_hidden_layers": 28,
+  "exit_layers": [
+    7,
+    14,
+    21
+  ],
+  "full_accuracy": 0.8698347107438017,
+  "full_f1": 0.8590237303986239,
+  "hybrid_accuracy": 0.8533057851239669,
+  "hybrid_f1": 0.8335681560115616,
+  "accuracy_retention": 0.9809976247030878,
+  "early_exit_pct": 98.4504132231405,
+  "avg_layers_used": 14.679752066115702,
+  "layer_fraction": 0.5242768595041322,
+  "layer_usage": {
+    "7": 32.85123966942149,
+    "14": 26.136363636363637,
+    "21": 39.46280991735537,
+    "28": 1.5495867768595042
+  },
+  "exit_layer_metrics": {
+    "7": {
+      "accuracy": 0.6342975206611571,
+      "f1_macro": 0.3931679373764152
+    },
+    "14": {
+      "accuracy": 0.7293388429752066,
+      "f1_macro": 0.48494935565171904
+    },
+    "21": {
+      "accuracy": 0.8615702479338843,
+      "f1_macro": 0.8483262010986676
+    }
+  },
+  "ece": 0.059077683743859126,
+  "selected_threshold": 0.8076767676767677,
+  "ci_retention_95": [
+    0.9634423172239425,
+    0.9988081048867699
+  ],
+  "mcnemar_p_value": 0.05677982347435695,
+  "sweep": [
+    {
+      "entropy_threshold": 0.01,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.8602789256198348,
+      "early_exit_pct": 55.78512396694215
+    },
+    {
+      "entropy_threshold": 0.025050505050505052,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.827995867768595,
+      "early_exit_pct": 67.25206611570248
+    },
+    {
+      "entropy_threshold": 0.0401010101010101,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.8112086776859504,
+      "early_exit_pct": 71.79752066115702
+    },
+    {
+      "entropy_threshold": 0.05515151515151515,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.7951962809917356,
+      "early_exit_pct": 75.30991735537191
+    },
+    {
+      "entropy_threshold": 0.0702020202020202,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.7835743801652892,
+      "early_exit_pct": 77.99586776859503
+    },
+    {
+      "entropy_threshold": 0.08525252525252525,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.7709194214876033,
+      "early_exit_pct": 80.06198347107438
+    },
+    {
+      "entropy_threshold": 0.1003030303030303,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.7572314049586776,
+      "early_exit_pct": 82.33471074380165
+    },
+    {
+      "entropy_threshold": 0.11535353535353535,
+      "accuracy": 0.871900826446281,
+      "retention": 1.002375296912114,
+      "layer_fraction": 0.7456095041322314,
+      "early_exit_pct": 84.29752066115702
+    },
+    {
+      "entropy_threshold": 0.1304040404040404,
+      "accuracy": 0.871900826446281,
+      "retention": 1.002375296912114,
+      "layer_fraction": 0.7378615702479339,
+      "early_exit_pct": 84.81404958677686
+    },
+    {
+      "entropy_threshold": 0.14545454545454545,
+      "accuracy": 0.871900826446281,
+      "retention": 1.002375296912114,
+      "layer_fraction": 0.731404958677686,
+      "early_exit_pct": 86.05371900826447
+    },
+    {
+      "entropy_threshold": 0.1605050505050505,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.7244318181818182,
+      "early_exit_pct": 87.29338842975206
+    },
+    {
+      "entropy_threshold": 0.17555555555555558,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.7177169421487604,
+      "early_exit_pct": 87.70661157024794
+    },
+    {
+      "entropy_threshold": 0.1906060606060606,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.7130681818181818,
+      "early_exit_pct": 87.91322314049587
+    },
+    {
+      "entropy_threshold": 0.20565656565656565,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.7104855371900827,
+      "early_exit_pct": 88.01652892561982
+    },
+    {
+      "entropy_threshold": 0.2207070707070707,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.7055785123966942,
+      "early_exit_pct": 88.42975206611571
+    },
+    {
+      "entropy_threshold": 0.23575757575757578,
+      "accuracy": 0.871900826446281,
+      "retention": 1.002375296912114,
+      "layer_fraction": 0.699896694214876,
+      "early_exit_pct": 89.0495867768595
+    },
+    {
+      "entropy_threshold": 0.2508080808080808,
+      "accuracy": 0.871900826446281,
+      "retention": 1.002375296912114,
+      "layer_fraction": 0.6965392561983471,
+      "early_exit_pct": 89.35950413223141
+    },
+    {
+      "entropy_threshold": 0.26585858585858585,
+      "accuracy": 0.8729338842975206,
+      "retention": 1.003562945368171,
+      "layer_fraction": 0.6934400826446281,
+      "early_exit_pct": 89.6694214876033
+    },
+    {
+      "entropy_threshold": 0.2809090909090909,
+      "accuracy": 0.8729338842975206,
+      "retention": 1.003562945368171,
+      "layer_fraction": 0.6903409090909091,
+      "early_exit_pct": 89.87603305785123
+    },
+    {
+      "entropy_threshold": 0.295959595959596,
+      "accuracy": 0.8729338842975206,
+      "retention": 1.003562945368171,
+      "layer_fraction": 0.6875,
+      "early_exit_pct": 89.97933884297521
+    },
+    {
+      "entropy_threshold": 0.311010101010101,
+      "accuracy": 0.8729338842975206,
+      "retention": 1.003562945368171,
+      "layer_fraction": 0.6838842975206612,
+      "early_exit_pct": 90.18595041322314
+    },
+    {
+      "entropy_threshold": 0.32606060606060605,
+      "accuracy": 0.875,
+      "retention": 1.005938242280285,
+      "layer_fraction": 0.6800103305785123,
+      "early_exit_pct": 90.80578512396694
+    },
+    {
+      "entropy_threshold": 0.34111111111111114,
+      "accuracy": 0.8739669421487604,
+      "retention": 1.004750593824228,
+      "layer_fraction": 0.6771694214876033,
+      "early_exit_pct": 91.11570247933885
+    },
+    {
+      "entropy_threshold": 0.3561616161616162,
+      "accuracy": 0.8739669421487604,
+      "retention": 1.004750593824228,
+      "layer_fraction": 0.6745867768595042,
+      "early_exit_pct": 91.11570247933885
+    },
+    {
+      "entropy_threshold": 0.3712121212121212,
+      "accuracy": 0.8739669421487604,
+      "retention": 1.004750593824228,
+      "layer_fraction": 0.672004132231405,
+      "early_exit_pct": 91.21900826446281
+    },
+    {
+      "entropy_threshold": 0.38626262626262625,
+      "accuracy": 0.8729338842975206,
+      "retention": 1.003562945368171,
+      "layer_fraction": 0.6676136363636364,
+      "early_exit_pct": 91.63223140495867
+    },
+    {
+      "entropy_threshold": 0.4013131313131313,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.6645144628099173,
+      "early_exit_pct": 91.94214876033058
+    },
+    {
+      "entropy_threshold": 0.4163636363636364,
+      "accuracy": 0.8708677685950413,
+      "retention": 1.001187648456057,
+      "layer_fraction": 0.6634814049586776,
+      "early_exit_pct": 92.04545454545455
+    },
+    {
+      "entropy_threshold": 0.4314141414141414,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.6603822314049587,
+      "early_exit_pct": 92.25206611570248
+    },
+    {
+      "entropy_threshold": 0.44646464646464645,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.65625,
+      "early_exit_pct": 92.4586776859504
+    },
+    {
+      "entropy_threshold": 0.46151515151515154,
+      "accuracy": 0.8698347107438017,
+      "retention": 1.0,
+      "layer_fraction": 0.6549586776859504,
+      "early_exit_pct": 92.56198347107438
+    },
+    {
+      "entropy_threshold": 0.4765656565656566,
+      "accuracy": 0.868801652892562,
+      "retention": 0.9988123515439429,
+      "layer_fraction": 0.6510847107438017,
+      "early_exit_pct": 92.97520661157024
+    },
+    {
+      "entropy_threshold": 0.4916161616161616,
+      "accuracy": 0.8667355371900827,
+      "retention": 0.996437054631829,
+      "layer_fraction": 0.6472107438016529,
+      "early_exit_pct": 93.59504132231406
+    },
+    {
+      "entropy_threshold": 0.5066666666666666,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.6428202479338844,
+      "early_exit_pct": 93.69834710743802
+    },
+    {
+      "entropy_threshold": 0.5217171717171717,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.6392045454545455,
+      "early_exit_pct": 93.80165289256198
+    },
+    {
+      "entropy_threshold": 0.5367676767676768,
+      "accuracy": 0.8667355371900827,
+      "retention": 0.996437054631829,
+      "layer_fraction": 0.6348140495867769,
+      "early_exit_pct": 94.31818181818183
+    },
+    {
+      "entropy_threshold": 0.5518181818181818,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.6306818181818182,
+      "early_exit_pct": 94.42148760330579
+    },
+    {
+      "entropy_threshold": 0.5668686868686869,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.6270661157024794,
+      "early_exit_pct": 94.73140495867769
+    },
+    {
+      "entropy_threshold": 0.581919191919192,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.6213842975206612,
+      "early_exit_pct": 94.93801652892562
+    },
+    {
+      "entropy_threshold": 0.5969696969696969,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.6149276859504132,
+      "early_exit_pct": 95.0413223140496
+    },
+    {
+      "entropy_threshold": 0.612020202020202,
+      "accuracy": 0.8667355371900827,
+      "retention": 0.996437054631829,
+      "layer_fraction": 0.6107954545454545,
+      "early_exit_pct": 95.24793388429752
+    },
+    {
+      "entropy_threshold": 0.6270707070707071,
+      "accuracy": 0.8646694214876033,
+      "retention": 0.9940617577197148,
+      "layer_fraction": 0.6053719008264463,
+      "early_exit_pct": 95.35123966942149
+    },
+    {
+      "entropy_threshold": 0.6421212121212121,
+      "accuracy": 0.8657024793388429,
+      "retention": 0.9952494061757718,
+      "layer_fraction": 0.5996900826446281,
+      "early_exit_pct": 95.66115702479338
+    },
+    {
+      "entropy_threshold": 0.6571717171717172,
+      "accuracy": 0.8677685950413223,
+      "retention": 0.997624703087886,
+      "layer_fraction": 0.5916838842975206,
+      "early_exit_pct": 95.97107438016529
+    },
+    {
+      "entropy_threshold": 0.6722222222222223,
+      "accuracy": 0.8636363636363636,
+      "retention": 0.9928741092636579,
+      "layer_fraction": 0.5836776859504132,
+      "early_exit_pct": 96.17768595041323
+    },
+    {
+      "entropy_threshold": 0.6872727272727273,
+      "accuracy": 0.8605371900826446,
+      "retention": 0.9893111638954869,
+      "layer_fraction": 0.577995867768595,
+      "early_exit_pct": 96.38429752066115
+    },
+    {
+      "entropy_threshold": 0.7023232323232323,
+      "accuracy": 0.859504132231405,
+      "retention": 0.9881235154394299,
+      "layer_fraction": 0.572055785123967,
+      "early_exit_pct": 96.5909090909091
+    },
+    {
+      "entropy_threshold": 0.7173737373737373,
+      "accuracy": 0.859504132231405,
+      "retention": 0.9881235154394299,
+      "layer_fraction": 0.5650826446280991,
+      "early_exit_pct": 97.21074380165288
+    },
+    {
+      "entropy_threshold": 0.7324242424242424,
+      "accuracy": 0.859504132231405,
+      "retention": 0.9881235154394299,
+      "layer_fraction": 0.5570764462809917,
+      "early_exit_pct": 97.8305785123967
+    },
+    {
+      "entropy_threshold": 0.7474747474747475,
+      "accuracy": 0.8584710743801653,
+      "retention": 0.986935866983373,
+      "layer_fraction": 0.5516528925619835,
+      "early_exit_pct": 97.93388429752066
+    },
+    {
+      "entropy_threshold": 0.7625252525252525,
+      "accuracy": 0.859504132231405,
+      "retention": 0.9881235154394299,
+      "layer_fraction": 0.5459710743801652,
+      "early_exit_pct": 98.03719008264463
+    },
+    {
+      "entropy_threshold": 0.7775757575757576,
+      "accuracy": 0.8584710743801653,
+      "retention": 0.986935866983373,
+      "layer_fraction": 0.5387396694214875,
+      "early_exit_pct": 98.24380165289256
+    },
+    {
+      "entropy_threshold": 0.7926262626262626,
+      "accuracy": 0.8574380165289256,
+      "retention": 0.9857482185273159,
+      "layer_fraction": 0.5309917355371901,
+      "early_exit_pct": 98.24380165289256
+    },
+    {
+      "entropy_threshold": 0.8076767676767677,
+      "accuracy": 0.8533057851239669,
+      "retention": 0.9809976247030878,
+      "layer_fraction": 0.5242768595041322,
+      "early_exit_pct": 98.4504132231405
+    },
+    {
+      "entropy_threshold": 0.8227272727272728,
+      "accuracy": 0.8522727272727273,
+      "retention": 0.9798099762470308,
+      "layer_fraction": 0.5180785123966942,
+      "early_exit_pct": 98.4504132231405
+    },
+    {
+      "entropy_threshold": 0.8377777777777777,
+      "accuracy": 0.8502066115702479,
+      "retention": 0.9774346793349168,
+      "layer_fraction": 0.5111053719008265,
+      "early_exit_pct": 98.4504132231405
+    },
+    {
+      "entropy_threshold": 0.8528282828282828,
+      "accuracy": 0.8419421487603306,
+      "retention": 0.9679334916864608,
+      "layer_fraction": 0.4992252066115702,
+      "early_exit_pct": 98.65702479338843
+    },
+    {
+      "entropy_threshold": 0.8678787878787879,
+      "accuracy": 0.8398760330578512,
+      "retention": 0.9655581947743467,
+      "layer_fraction": 0.4896694214876033,
+      "early_exit_pct": 98.65702479338843
+    },
+    {
+      "entropy_threshold": 0.8829292929292929,
+      "accuracy": 0.8378099173553719,
+      "retention": 0.9631828978622328,
+      "layer_fraction": 0.48114669421487605,
+      "early_exit_pct": 98.86363636363636
+    },
+    {
+      "entropy_threshold": 0.897979797979798,
+      "accuracy": 0.8285123966942148,
+      "retention": 0.9524940617577197,
+      "layer_fraction": 0.4669421487603306,
+      "early_exit_pct": 99.17355371900827
+    },
+    {
+      "entropy_threshold": 0.9130303030303031,
+      "accuracy": 0.8223140495867769,
+      "retention": 0.9453681710213777,
+      "layer_fraction": 0.4553202479338843,
+      "early_exit_pct": 99.17355371900827
+    },
+    {
+      "entropy_threshold": 0.9280808080808081,
+      "accuracy": 0.8181818181818182,
+      "retention": 0.9406175771971497,
+      "layer_fraction": 0.44266528925619836,
+      "early_exit_pct": 99.3801652892562
+    },
+    {
+      "entropy_threshold": 0.9431313131313132,
+      "accuracy": 0.8078512396694215,
+      "retention": 0.9287410926365796,
+      "layer_fraction": 0.4297520661157025,
+      "early_exit_pct": 99.3801652892562
+    },
+    {
+      "entropy_threshold": 0.9581818181818181,
+      "accuracy": 0.7954545454545454,
+      "retention": 0.9144893111638954,
+      "layer_fraction": 0.41735537190082644,
+      "early_exit_pct": 99.3801652892562
+    },
+    {
+      "entropy_threshold": 0.9732323232323232,
+      "accuracy": 0.7789256198347108,
+      "retention": 0.8954869358669834,
+      "layer_fraction": 0.40237603305785125,
+      "early_exit_pct": 99.3801652892562
+    },
+    {
+      "entropy_threshold": 0.9882828282828283,
+      "accuracy": 0.7675619834710744,
+      "retention": 0.8824228028503562,
+      "layer_fraction": 0.3886880165289256,
+      "early_exit_pct": 99.3801652892562
+    },
+    {
+      "entropy_threshold": 1.0033333333333332,
+      "accuracy": 0.7458677685950413,
+      "retention": 0.8574821852731591,
+      "layer_fraction": 0.3721590909090909,
+      "early_exit_pct": 99.69008264462809
+    },
+    {
+      "entropy_threshold": 1.0183838383838384,
+      "accuracy": 0.7355371900826446,
+      "retention": 0.845605700712589,
+      "layer_fraction": 0.3584710743801653,
+      "early_exit_pct": 99.69008264462809
+    },
+    {
+      "entropy_threshold": 1.0334343434343434,
+      "accuracy": 0.7148760330578512,
+      "retention": 0.8218527315914488,
+      "layer_fraction": 0.34039256198347106,
+      "early_exit_pct": 99.89669421487604
+    },
+    {
+      "entropy_threshold": 1.0484848484848486,
+      "accuracy": 0.6756198347107438,
+      "retention": 0.7767220902612827,
+      "layer_fraction": 0.3117252066115702,
+      "early_exit_pct": 99.89669421487604
+    },
+    {
+      "entropy_threshold": 1.0635353535353536,
+      "accuracy": 0.6415289256198347,
+      "retention": 0.7375296912114013,
+      "layer_fraction": 0.2654958677685951,
+      "early_exit_pct": 99.89669421487604
+    },
+    {
+      "entropy_threshold": 1.0785858585858585,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.0936363636363635,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.1086868686868687,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.1237373737373737,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.1387878787878787,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.1538383838383839,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.1688888888888889,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.1839393939393938,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.198989898989899,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.214040404040404,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.229090909090909,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.2441414141414142,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.2591919191919192,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.2742424242424242,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.2892929292929294,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3043434343434344,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3193939393939393,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3344444444444445,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3494949494949495,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3645454545454545,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3795959595959595,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.3946464646464647,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.4096969696969697,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.4247474747474747,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.4397979797979799,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.4548484848484848,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.4698989898989898,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.484949494949495,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    },
+    {
+      "entropy_threshold": 1.5,
+      "accuracy": 0.6342975206611571,
+      "retention": 0.7292161520190024,
+      "layer_fraction": 0.25,
+      "early_exit_pct": 100.0
+    }
+  ],
+  "agreement_tier_analysis": {
+    "100": {
+      "n": 456,
+      "full_acc": 0.9890350877192983,
+      "hybrid_acc": 0.9758771929824561,
+      "early_exit_pct": 100.0,
+      "avg_layers": 14.291666666666666
+    },
+    "75": {
+      "n": 240,
+      "full_acc": 0.8875,
+      "hybrid_acc": 0.875,
+      "early_exit_pct": 98.33333333333333,
+      "avg_layers": 14.729166666666666
+    },
+    "66": {
+      "n": 150,
+      "full_acc": 0.7,
+      "hybrid_acc": 0.6666666666666666,
+      "early_exit_pct": 96.0,
+      "avg_layers": 15.82
+    },
+    "50": {
+      "n": 122,
+      "full_acc": 0.5983606557377049,
+      "hybrid_acc": 0.5819672131147541,
+      "early_exit_pct": 95.90163934426229,
+      "avg_layers": 14.631147540983607
+    }
+  },
+  "head_summary": {
+    "layer_7": {
+      "train_acc": 0.6509303928325293,
+      "val_acc": 0.6394628099173554
+    },
+    "layer_14": {
+      "train_acc": 0.801171605789111,
+      "val_acc": 0.7386363636363636
+    },
+    "layer_21": {
+      "train_acc": 0.9855272226051,
+      "val_acc": 0.8646694214876033
+    }
+  }
+}

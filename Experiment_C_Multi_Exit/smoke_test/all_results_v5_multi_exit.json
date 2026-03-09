@@ -1,0 +1,1547 @@
+{
+  "version": "v5_multi_exit_pabee_enhanced_router",
+  "config": {
+    "data_dir": "FinancialPhraseBank-v1.0",
+    "results_dir": "results_v5_smoke",
+    "model_name": "ProsusAI/finbert",
+    "exit_layers": "4,8",
+    "max_length": 128,
+    "batch_size": 32,
+    "patience": 2,
+    "head_epochs": 10,
+    "head_lr": 0.001,
+    "router_trees": 120,
+    "router_max_depth": 6,
+    "router_learning_rate": 0.05,
+    "router_subsample": 0.9,
+    "router_colsample": 0.9,
+    "target_retention": 0.98,
+    "max_layer_fraction": 0.5,
+    "cost_lambda": 0.25,
+    "tau_min": 0.05,
+    "tau_max": 0.99,
+    "tau_steps": 35,
+    "test_split": 0.2,
+    "val_split": 0.2,
+    "n_bootstrap": 200,
+    "demo_text": "Revenue fell, but strategic guidance remains strong.",
+    "seed": 42
+  },
+  "model": {
+    "backbone": "ProsusAI/finbert",
+    "device": "cuda",
+    "exit_layers": [
+      4,
+      8
+    ],
+    "num_hidden_layers": 12,
+    "patience": 2,
+    "exit_head_type": "MLPExitHead(768->256->3)",
+    "router_feature_names": [
+      "p_negative",
+      "p_neutral",
+      "p_positive",
+      "max_confidence",
+      "top2_margin",
+      "entropy",
+      "hedge_count",
+      "text_length",
+      "exit_layer_norm",
+      "max_logit",
+      "logit_std",
+      "patience_agreement"
+    ]
+  },
+  "training": {
+    "exit_heads": {
+      "layer_4_train_acc": 0.7026188835286009,
+      "layer_4_val_acc": 0.6993801652892562,
+      "layer_8_train_acc": 0.8015161957270848,
+      "layer_8_val_acc": 0.768595041322314
+    },
+    "router": {
+      "type": "xgboost",
+      "train_reliable_rate": 0.7520675396278429,
+      "n_training_samples": 5804,
+      "feature_importance": {
+        "p_negative": 0.04494193568825722,
+        "p_neutral": 0.053185030817985535,
+        "p_positive": 0.04739503562450409,
+        "max_confidence": 0.21432548761367798,
+        "top2_margin": 0.2857363224029541,
+        "entropy": 0.06401229649782181,
+        "hedge_count": 0.04819532111287117,
+        "text_length": 0.048684753477573395,
+        "exit_layer_norm": 0.059681713581085205,
+        "max_logit": 0.04792212322354317,
+        "logit_std": 0.04734206199645996,
+        "patience_agreement": 0.03857794776558876
+      }
+    }
+  },
+  "tfidf_baseline": {
+    "accuracy": 0.743801652892562,
+    "f1_macro": 0.6458373442217179,
+    "time_s": 0.026287555694580078,
+    "throughput": 36823.507337336065,
+    "classification_report": {
+      "negative": {
+        "precision": 0.8679245283018868,
+        "recall": 0.38016528925619836,
+        "f1-score": 0.5287356321839081,
+        "support": 121.0
+      },
+      "neutral": {
+        "precision": 0.7325268817204301,
+        "recall": 0.9478260869565217,
+        "f1-score": 0.8263836239575436,
+        "support": 575.0
+      },
+      "positive": {
+        "precision": 0.7543859649122807,
+        "recall": 0.4742647058823529,
+        "f1-score": 0.582392776523702,
+        "support": 272.0
+      },
+      "accuracy": 0.743801652892562,
+      "macro avg": {
+        "precision": 0.784945791644866,
+        "recall": 0.6007520273650243,
+        "f1-score": 0.6458373442217179,
+        "support": 968.0
+      },
+      "weighted avg": {
+        "precision": 0.7555938092664422,
+        "recall": 0.743801652892562,
+        "f1-score": 0.7206182133102143,
+        "support": 968.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        46,
+        58,
+        17
+      ],
+      [
+        5,
+        545,
+        25
+      ],
+      [
+        2,
+        141,
+        129
+      ]
+    ]
+  },
+  "exit_layer_metrics": {
+    "4": {
+      "accuracy": 0.6900826446280992,
+      "f1_macro": 0.5714182398490936
+    },
+    "8": {
+      "accuracy": 0.7417355371900827,
+      "f1_macro": 0.6692301784497761
+    }
+  },
+  "threshold_selection": {
+    "validation_full_accuracy": 0.8925619834710744,
+    "selected_tau": 0.9623529411764705,
+    "selected_point": {
+      "tau": 0.9623529411764705,
+      "accuracy": 0.8863636363636364,
+      "retention": 0.9930555555555555,
+      "early_exit_pct": 23.553719008264462,
+      "avg_layers": 11.057851239669422,
+      "layer_fraction": 0.9214876033057852,
+      "cost": 0.34400826446280997,
+      "layer_usage": {
+        "4": 0.0,
+        "8": 23.553719008264462,
+        "12": 76.44628099173553
+      }
+    },
+    "sweep": [
+      {
+        "tau": 0.05,
+        "accuracy": 0.8181818181818182,
+        "retention": 0.9166666666666667,
+        "early_exit_pct": 77.06611570247934,
+        "avg_layers": 8.917355371900827,
+        "layer_fraction": 0.7431129476584023,
+        "cost": 0.36759641873278237,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 77.06611570247934,
+          "12": 22.933884297520663
+        }
+      },
+      {
+        "tau": 0.07764705882352942,
+        "accuracy": 0.8181818181818182,
+        "retention": 0.9166666666666667,
+        "early_exit_pct": 77.06611570247934,
+        "avg_layers": 8.917355371900827,
+        "layer_fraction": 0.7431129476584023,
+        "cost": 0.36759641873278237,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 77.06611570247934,
+          "12": 22.933884297520663
+        }
+      },
+      {
+        "tau": 0.10529411764705882,
+        "accuracy": 0.8181818181818182,
+        "retention": 0.9166666666666667,
+        "early_exit_pct": 77.06611570247934,
+        "avg_layers": 8.917355371900827,
+        "layer_fraction": 0.7431129476584023,
+        "cost": 0.36759641873278237,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 77.06611570247934,
+          "12": 22.933884297520663
+        }
+      },
+      {
+        "tau": 0.13294117647058823,
+        "accuracy": 0.8181818181818182,
+        "retention": 0.9166666666666667,
+        "early_exit_pct": 76.96280991735537,
+        "avg_layers": 8.921487603305785,
+        "layer_fraction": 0.7434573002754821,
+        "cost": 0.3676825068870523,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.96280991735537,
+          "12": 23.037190082644628
+        }
+      },
+      {
+        "tau": 0.16058823529411764,
+        "accuracy": 0.8192148760330579,
+        "retention": 0.9178240740740741,
+        "early_exit_pct": 76.85950413223141,
+        "avg_layers": 8.925619834710744,
+        "layer_fraction": 0.7438016528925621,
+        "cost": 0.36673553719008267,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.85950413223141,
+          "12": 23.140495867768596
+        }
+      },
+      {
+        "tau": 0.18823529411764706,
+        "accuracy": 0.8192148760330579,
+        "retention": 0.9178240740740741,
+        "early_exit_pct": 76.85950413223141,
+        "avg_layers": 8.925619834710744,
+        "layer_fraction": 0.7438016528925621,
+        "cost": 0.36673553719008267,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.85950413223141,
+          "12": 23.140495867768596
+        }
+      },
+      {
+        "tau": 0.21588235294117647,
+        "accuracy": 0.8192148760330579,
+        "retention": 0.9178240740740741,
+        "early_exit_pct": 76.85950413223141,
+        "avg_layers": 8.925619834710744,
+        "layer_fraction": 0.7438016528925621,
+        "cost": 0.36673553719008267,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.85950413223141,
+          "12": 23.140495867768596
+        }
+      },
+      {
+        "tau": 0.24352941176470588,
+        "accuracy": 0.8212809917355371,
+        "retention": 0.9201388888888888,
+        "early_exit_pct": 76.5495867768595,
+        "avg_layers": 8.938016528925619,
+        "layer_fraction": 0.7448347107438016,
+        "cost": 0.36492768595041325,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.5495867768595,
+          "12": 23.450413223140494
+        }
+      },
+      {
+        "tau": 0.2711764705882353,
+        "accuracy": 0.8212809917355371,
+        "retention": 0.9201388888888888,
+        "early_exit_pct": 76.5495867768595,
+        "avg_layers": 8.938016528925619,
+        "layer_fraction": 0.7448347107438016,
+        "cost": 0.36492768595041325,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.5495867768595,
+          "12": 23.450413223140494
+        }
+      },
+      {
+        "tau": 0.2988235294117647,
+        "accuracy": 0.8212809917355371,
+        "retention": 0.9201388888888888,
+        "early_exit_pct": 76.5495867768595,
+        "avg_layers": 8.938016528925619,
+        "layer_fraction": 0.7448347107438016,
+        "cost": 0.36492768595041325,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.5495867768595,
+          "12": 23.450413223140494
+        }
+      },
+      {
+        "tau": 0.32647058823529407,
+        "accuracy": 0.8223140495867769,
+        "retention": 0.9212962962962963,
+        "early_exit_pct": 76.34297520661157,
+        "avg_layers": 8.946280991735538,
+        "layer_fraction": 0.7455234159779615,
+        "cost": 0.36406680440771344,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.34297520661157,
+          "12": 23.65702479338843
+        }
+      },
+      {
+        "tau": 0.3541176470588235,
+        "accuracy": 0.8223140495867769,
+        "retention": 0.9212962962962963,
+        "early_exit_pct": 76.34297520661157,
+        "avg_layers": 8.946280991735538,
+        "layer_fraction": 0.7455234159779615,
+        "cost": 0.36406680440771344,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.34297520661157,
+          "12": 23.65702479338843
+        }
+      },
+      {
+        "tau": 0.3817647058823529,
+        "accuracy": 0.8243801652892562,
+        "retention": 0.923611111111111,
+        "early_exit_pct": 76.03305785123968,
+        "avg_layers": 8.958677685950413,
+        "layer_fraction": 0.7465564738292011,
+        "cost": 0.36225895316804413,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 76.03305785123968,
+          "12": 23.96694214876033
+        }
+      },
+      {
+        "tau": 0.4094117647058823,
+        "accuracy": 0.8254132231404959,
+        "retention": 0.9247685185185186,
+        "early_exit_pct": 75.92975206611571,
+        "avg_layers": 8.962809917355372,
+        "layer_fraction": 0.746900826446281,
+        "cost": 0.3613119834710743,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 75.92975206611571,
+          "12": 24.070247933884296
+        }
+      },
+      {
+        "tau": 0.4370588235294117,
+        "accuracy": 0.8254132231404959,
+        "retention": 0.9247685185185186,
+        "early_exit_pct": 75.6198347107438,
+        "avg_layers": 8.975206611570249,
+        "layer_fraction": 0.7479338842975207,
+        "cost": 0.36157024793388426,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 75.6198347107438,
+          "12": 24.380165289256198
+        }
+      },
+      {
+        "tau": 0.46470588235294114,
+        "accuracy": 0.8233471074380165,
+        "retention": 0.9224537037037037,
+        "early_exit_pct": 74.3801652892562,
+        "avg_layers": 9.024793388429751,
+        "layer_fraction": 0.7520661157024793,
+        "cost": 0.3646694214876033,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 74.3801652892562,
+          "12": 25.6198347107438
+        }
+      },
+      {
+        "tau": 0.49235294117647055,
+        "accuracy": 0.8254132231404959,
+        "retention": 0.9247685185185186,
+        "early_exit_pct": 73.55371900826447,
+        "avg_layers": 9.057851239669422,
+        "layer_fraction": 0.7548209366391184,
+        "cost": 0.36329201101928366,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 73.55371900826447,
+          "12": 26.446280991735538
+        }
+      },
+      {
+        "tau": 0.52,
+        "accuracy": 0.8285123966942148,
+        "retention": 0.9282407407407407,
+        "early_exit_pct": 71.5909090909091,
+        "avg_layers": 9.136363636363637,
+        "layer_fraction": 0.7613636363636364,
+        "cost": 0.3618285123966942,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 71.5909090909091,
+          "12": 28.40909090909091
+        }
+      },
+      {
+        "tau": 0.5476470588235294,
+        "accuracy": 0.8336776859504132,
+        "retention": 0.9340277777777778,
+        "early_exit_pct": 69.93801652892562,
+        "avg_layers": 9.202479338842975,
+        "layer_fraction": 0.7668732782369146,
+        "cost": 0.35804063360881544,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 69.93801652892562,
+          "12": 30.061983471074385
+        }
+      },
+      {
+        "tau": 0.5752941176470588,
+        "accuracy": 0.8336776859504132,
+        "retention": 0.9340277777777778,
+        "early_exit_pct": 67.56198347107438,
+        "avg_layers": 9.297520661157025,
+        "layer_fraction": 0.7747933884297521,
+        "cost": 0.3600206611570248,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 67.56198347107438,
+          "12": 32.438016528925615
+        }
+      },
+      {
+        "tau": 0.6029411764705882,
+        "accuracy": 0.8357438016528925,
+        "retention": 0.9363425925925926,
+        "early_exit_pct": 66.52892561983471,
+        "avg_layers": 9.338842975206612,
+        "layer_fraction": 0.778236914600551,
+        "cost": 0.3588154269972452,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 66.52892561983471,
+          "12": 33.47107438016529
+        }
+      },
+      {
+        "tau": 0.6305882352941177,
+        "accuracy": 0.8367768595041323,
+        "retention": 0.9375,
+        "early_exit_pct": 64.35950413223141,
+        "avg_layers": 9.425619834710744,
+        "layer_fraction": 0.7854683195592287,
+        "cost": 0.3595902203856749,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 64.35950413223141,
+          "12": 35.64049586776859
+        }
+      },
+      {
+        "tau": 0.658235294117647,
+        "accuracy": 0.8419421487603306,
+        "retention": 0.943287037037037,
+        "early_exit_pct": 61.46694214876033,
+        "avg_layers": 9.541322314049587,
+        "layer_fraction": 0.7951101928374656,
+        "cost": 0.35683539944903586,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 61.46694214876033,
+          "12": 38.53305785123967
+        }
+      },
+      {
+        "tau": 0.6858823529411765,
+        "accuracy": 0.8460743801652892,
+        "retention": 0.9479166666666666,
+        "early_exit_pct": 59.400826446280995,
+        "avg_layers": 9.62396694214876,
+        "layer_fraction": 0.8019972451790633,
+        "cost": 0.3544249311294766,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 59.400826446280995,
+          "12": 40.59917355371901
+        }
+      },
+      {
+        "tau": 0.7135294117647059,
+        "accuracy": 0.8502066115702479,
+        "retention": 0.9525462962962963,
+        "early_exit_pct": 56.71487603305785,
+        "avg_layers": 9.731404958677686,
+        "layer_fraction": 0.8109504132231405,
+        "cost": 0.35253099173553726,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 56.71487603305785,
+          "12": 43.285123966942145
+        }
+      },
+      {
+        "tau": 0.7411764705882353,
+        "accuracy": 0.8533057851239669,
+        "retention": 0.9560185185185185,
+        "early_exit_pct": 54.23553719008265,
+        "avg_layers": 9.830578512396695,
+        "layer_fraction": 0.8192148760330579,
+        "cost": 0.3514979338842975,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 54.23553719008265,
+          "12": 45.764462809917354
+        }
+      },
+      {
+        "tau": 0.7688235294117647,
+        "accuracy": 0.859504132231405,
+        "retention": 0.9629629629629629,
+        "early_exit_pct": 50.72314049586777,
+        "avg_layers": 9.97107438016529,
+        "layer_fraction": 0.8309228650137741,
+        "cost": 0.34822658402203854,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 50.72314049586777,
+          "12": 49.27685950413223
+        }
+      },
+      {
+        "tau": 0.7964705882352942,
+        "accuracy": 0.8615702479338843,
+        "retention": 0.9652777777777777,
+        "early_exit_pct": 48.14049586776859,
+        "avg_layers": 10.074380165289256,
+        "layer_fraction": 0.8395316804407713,
+        "cost": 0.34831267217630857,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 48.14049586776859,
+          "12": 51.85950413223141
+        }
+      },
+      {
+        "tau": 0.8241176470588235,
+        "accuracy": 0.8646694214876033,
+        "retention": 0.96875,
+        "early_exit_pct": 44.31818181818182,
+        "avg_layers": 10.227272727272727,
+        "layer_fraction": 0.8522727272727272,
+        "cost": 0.3483987603305785,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 44.31818181818182,
+          "12": 55.68181818181818
+        }
+      },
+      {
+        "tau": 0.851764705882353,
+        "accuracy": 0.8698347107438017,
+        "retention": 0.9745370370370371,
+        "early_exit_pct": 41.21900826446281,
+        "avg_layers": 10.351239669421487,
+        "layer_fraction": 0.8626033057851239,
+        "cost": 0.3458161157024793,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 41.21900826446281,
+          "12": 58.78099173553719
+        }
+      },
+      {
+        "tau": 0.8794117647058823,
+        "accuracy": 0.8708677685950413,
+        "retention": 0.9756944444444444,
+        "early_exit_pct": 38.53305785123967,
+        "avg_layers": 10.458677685950413,
+        "layer_fraction": 0.8715564738292011,
+        "cost": 0.34702134986225897,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 38.53305785123967,
+          "12": 61.46694214876033
+        }
+      },
+      {
+        "tau": 0.9070588235294118,
+        "accuracy": 0.8760330578512396,
+        "retention": 0.9814814814814814,
+        "early_exit_pct": 35.33057851239669,
+        "avg_layers": 10.586776859504132,
+        "layer_fraction": 0.8822314049586777,
+        "cost": 0.3445247933884298,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 35.33057851239669,
+          "12": 64.6694214876033
+        }
+      },
+      {
+        "tau": 0.9347058823529412,
+        "accuracy": 0.8801652892561983,
+        "retention": 0.986111111111111,
+        "early_exit_pct": 30.47520661157025,
+        "avg_layers": 10.78099173553719,
+        "layer_fraction": 0.8984159779614326,
+        "cost": 0.34443870523415987,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 30.47520661157025,
+          "12": 69.52479338842976
+        }
+      },
+      {
+        "tau": 0.9623529411764705,
+        "accuracy": 0.8863636363636364,
+        "retention": 0.9930555555555555,
+        "early_exit_pct": 23.553719008264462,
+        "avg_layers": 11.057851239669422,
+        "layer_fraction": 0.9214876033057852,
+        "cost": 0.34400826446280997,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 23.553719008264462,
+          "12": 76.44628099173553
+        }
+      },
+      {
+        "tau": 0.99,
+        "accuracy": 0.8925619834710744,
+        "retention": 1.0,
+        "early_exit_pct": 12.190082644628099,
+        "avg_layers": 11.512396694214877,
+        "layer_fraction": 0.959366391184573,
+        "cost": 0.3472796143250688,
+        "layer_usage": {
+          "4": 0.0,
+          "8": 12.190082644628099,
+          "12": 87.80991735537191
+        }
+      }
+    ]
+  },
+  "test_metrics": {
+    "full_accuracy": 0.881198347107438,
+    "full_f1": 0.8720214897085038,
+    "hybrid_accuracy": 0.875,
+    "hybrid_f1": 0.8654548066312772,
+    "accuracy_retention": 0.9929660023446658,
+    "early_exit_pct": 23.140495867768596,
+    "avg_layers_used": 11.074380165289256,
+    "layer_fraction": 0.9228650137741047,
+    "approx_speedup_vs_full": 1.0835820895522388,
+    "layer_usage_distribution": {
+      "4": 0.0,
+      "8": 23.140495867768596,
+      "12": 76.85950413223141
+    },
+    "meets_retention_target": true,
+    "meets_layer_budget": false,
+    "ci_retention_95": [
+      0.9849353940485275,
+      1.0
+    ],
+    "ci_deferred_pct_95": [
+      74.58161157024793,
+      79.13223140495867
+    ],
+    "mcnemar_statistic": 2.5,
+    "mcnemar_p_value": 0.11384629800665769,
+    "full_classification_report": {
+      "negative": {
+        "precision": 0.7697368421052632,
+        "recall": 0.9669421487603306,
+        "f1-score": 0.8571428571428571,
+        "support": 121.0
+      },
+      "neutral": {
+        "precision": 0.9585798816568047,
+        "recall": 0.8452173913043478,
+        "f1-score": 0.8983364140480592,
+        "support": 575.0
+      },
+      "positive": {
+        "precision": 0.8090614886731392,
+        "recall": 0.9191176470588235,
+        "f1-score": 0.8605851979345955,
+        "support": 272.0
+      },
+      "accuracy": 0.881198347107438,
+      "macro avg": {
+        "precision": 0.8457927374784023,
+        "recall": 0.9104257290411674,
+        "f1-score": 0.8720214897085038,
+        "support": 968.0
+      },
+      "weighted avg": {
+        "precision": 0.8929610689736504,
+        "recall": 0.881198347107438,
+        "f1-score": 0.8825794397005472,
+        "support": 968.0
+      }
+    },
+    "hybrid_classification_report": {
+      "negative": {
+        "precision": 0.7682119205298014,
+        "recall": 0.9586776859504132,
+        "f1-score": 0.8529411764705882,
+        "support": 121.0
+      },
+      "neutral": {
+        "precision": 0.9439071566731141,
+        "recall": 0.8486956521739131,
+        "f1-score": 0.8937728937728938,
+        "support": 575.0
+      },
+      "positive": {
+        "precision": 0.81,
+        "recall": 0.8933823529411765,
+        "f1-score": 0.8496503496503497,
+        "support": 272.0
+      },
+      "accuracy": 0.875,
+      "macro avg": {
+        "precision": 0.8407063590676386,
+        "recall": 0.9002518970218344,
+        "f1-score": 0.8654548066312772,
+        "support": 968.0
+      },
+      "weighted avg": {
+        "precision": 0.8843184478007713,
+        "recall": 0.875,
+        "f1-score": 0.8762708588607958,
+        "support": 968.0
+      }
+    },
+    "full_confusion_matrix": [
+      [
+        117,
+        3,
+        1
+      ],
+      [
+        31,
+        486,
+        58
+      ],
+      [
+        4,
+        18,
+        250
+      ]
+    ],
+    "hybrid_confusion_matrix": [
+      [
+        116,
+        4,
+        1
+      ],
+      [
+        31,
+        488,
+        56
+      ],
+      [
+        4,
+        25,
+        243
+      ]
+    ]
+  },
+  "entropy_baseline": {
+    "best_entropy_point": {
+      "layer": 4,
+      "entropy_threshold": 0.3140816326530612,
+      "accuracy": 0.8832644628099173,
+      "layer_fraction": 0.9180440771349861,
+      "early_exit_pct": 12.293388429752067
+    },
+    "router_advantage": -0.008264462809917328,
+    "sweep": [
+      {
+        "layer": 4,
+        "entropy_threshold": 0.01,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 1.0,
+        "early_exit_pct": 0.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.04040816326530612,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9972451790633609,
+        "early_exit_pct": 0.4132231404958678
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.07081632653061225,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9938016528925621,
+        "early_exit_pct": 0.9297520661157025
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.10122448979591836,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9896694214876033,
+        "early_exit_pct": 1.5495867768595042
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.13163265306122449,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9820936639118457,
+        "early_exit_pct": 2.6859504132231407
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.1620408163265306,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9745179063360881,
+        "early_exit_pct": 3.8223140495867765
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.19244897959183674,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9641873278236915,
+        "early_exit_pct": 5.371900826446281
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.22285714285714286,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9566115702479339,
+        "early_exit_pct": 6.508264462809918
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.25326530612244896,
+        "accuracy": 0.8822314049586777,
+        "layer_fraction": 0.940771349862259,
+        "early_exit_pct": 8.884297520661157
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.2836734693877551,
+        "accuracy": 0.8822314049586777,
+        "layer_fraction": 0.9263085399449036,
+        "early_exit_pct": 11.053719008264464
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.3140816326530612,
+        "accuracy": 0.8832644628099173,
+        "layer_fraction": 0.9180440771349861,
+        "early_exit_pct": 12.293388429752067
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.34448979591836737,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.902892561983471,
+        "early_exit_pct": 14.566115702479337
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.37489795918367347,
+        "accuracy": 0.8791322314049587,
+        "layer_fraction": 0.8891184573002754,
+        "early_exit_pct": 16.632231404958677
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.4053061224489796,
+        "accuracy": 0.8770661157024794,
+        "layer_fraction": 0.878099173553719,
+        "early_exit_pct": 18.285123966942148
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.4357142857142857,
+        "accuracy": 0.878099173553719,
+        "layer_fraction": 0.8588154269972451,
+        "early_exit_pct": 21.17768595041322
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.4661224489795919,
+        "accuracy": 0.878099173553719,
+        "layer_fraction": 0.8402203856749311,
+        "early_exit_pct": 23.96694214876033
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.496530612244898,
+        "accuracy": 0.8739669421487604,
+        "layer_fraction": 0.8174931129476585,
+        "early_exit_pct": 27.37603305785124
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.5269387755102041,
+        "accuracy": 0.8708677685950413,
+        "layer_fraction": 0.8023415977961433,
+        "early_exit_pct": 29.64876033057851
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.5573469387755102,
+        "accuracy": 0.8646694214876033,
+        "layer_fraction": 0.7899449035812672,
+        "early_exit_pct": 31.508264462809915
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.5877551020408164,
+        "accuracy": 0.8615702479338843,
+        "layer_fraction": 0.7699724517906336,
+        "early_exit_pct": 34.50413223140496
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.6181632653061224,
+        "accuracy": 0.859504132231405,
+        "layer_fraction": 0.7486225895316805,
+        "early_exit_pct": 37.70661157024794
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.6485714285714286,
+        "accuracy": 0.8522727272727273,
+        "layer_fraction": 0.7320936639118457,
+        "early_exit_pct": 40.18595041322314
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.6789795918367347,
+        "accuracy": 0.8450413223140496,
+        "layer_fraction": 0.7141873278236915,
+        "early_exit_pct": 42.87190082644628
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.7093877551020409,
+        "accuracy": 0.8357438016528925,
+        "layer_fraction": 0.6831955922865013,
+        "early_exit_pct": 47.5206611570248
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.7397959183673469,
+        "accuracy": 0.8295454545454546,
+        "layer_fraction": 0.6556473829201103,
+        "early_exit_pct": 51.652892561983464
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.7702040816326531,
+        "accuracy": 0.8254132231404959,
+        "layer_fraction": 0.6267217630853995,
+        "early_exit_pct": 55.99173553719008
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.8006122448979592,
+        "accuracy": 0.8109504132231405,
+        "layer_fraction": 0.5915977961432507,
+        "early_exit_pct": 61.2603305785124
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.8310204081632653,
+        "accuracy": 0.8006198347107438,
+        "layer_fraction": 0.5647382920110192,
+        "early_exit_pct": 65.28925619834712
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.8614285714285714,
+        "accuracy": 0.7933884297520661,
+        "layer_fraction": 0.540633608815427,
+        "early_exit_pct": 68.90495867768594
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.8918367346938776,
+        "accuracy": 0.7830578512396694,
+        "layer_fraction": 0.5117079889807162,
+        "early_exit_pct": 73.24380165289256
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.9222448979591837,
+        "accuracy": 0.7747933884297521,
+        "layer_fraction": 0.49242424242424243,
+        "early_exit_pct": 76.13636363636364
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.9526530612244898,
+        "accuracy": 0.7592975206611571,
+        "layer_fraction": 0.45798898071625344,
+        "early_exit_pct": 81.30165289256198
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 0.9830612244897959,
+        "accuracy": 0.7520661157024794,
+        "layer_fraction": 0.43388429752066116,
+        "early_exit_pct": 84.91735537190083
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.013469387755102,
+        "accuracy": 0.7324380165289256,
+        "layer_fraction": 0.40633608815426997,
+        "early_exit_pct": 89.0495867768595
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.0438775510204081,
+        "accuracy": 0.7097107438016529,
+        "layer_fraction": 0.37878787878787884,
+        "early_exit_pct": 93.18181818181817
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.0742857142857143,
+        "accuracy": 0.7004132231404959,
+        "layer_fraction": 0.34848484848484845,
+        "early_exit_pct": 97.72727272727273
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.1046938775510204,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.1351020408163266,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.1655102040816328,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.195918367346939,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.2263265306122448,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.256734693877551,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.2871428571428571,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.3175510204081633,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.3479591836734695,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.3783673469387756,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.4087755102040818,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.4391836734693877,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.4695918367346938,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 4,
+        "entropy_threshold": 1.5,
+        "accuracy": 0.6900826446280992,
+        "layer_fraction": 0.3333333333333333,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.01,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9972451790633609,
+        "early_exit_pct": 0.8264462809917356
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.04040816326530612,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9872589531680441,
+        "early_exit_pct": 3.8223140495867765
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.07081632653061225,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9779614325068872,
+        "early_exit_pct": 6.6115702479338845
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.10122448979591836,
+        "accuracy": 0.881198347107438,
+        "layer_fraction": 0.9669421487603306,
+        "early_exit_pct": 9.917355371900827
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.13163265306122449,
+        "accuracy": 0.8801652892561983,
+        "layer_fraction": 0.9583333333333334,
+        "early_exit_pct": 12.5
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.1620408163265306,
+        "accuracy": 0.8770661157024794,
+        "layer_fraction": 0.9504132231404959,
+        "early_exit_pct": 14.87603305785124
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.19244897959183674,
+        "accuracy": 0.878099173553719,
+        "layer_fraction": 0.943526170798898,
+        "early_exit_pct": 16.94214876033058
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.22285714285714286,
+        "accuracy": 0.8770661157024794,
+        "layer_fraction": 0.9359504132231405,
+        "early_exit_pct": 19.214876033057852
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.25326530612244896,
+        "accuracy": 0.875,
+        "layer_fraction": 0.9280303030303031,
+        "early_exit_pct": 21.59090909090909
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.2836734693877551,
+        "accuracy": 0.875,
+        "layer_fraction": 0.9170110192837466,
+        "early_exit_pct": 24.89669421487603
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.3140816326530612,
+        "accuracy": 0.8739669421487604,
+        "layer_fraction": 0.9104683195592287,
+        "early_exit_pct": 26.859504132231404
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.34448979591836737,
+        "accuracy": 0.871900826446281,
+        "layer_fraction": 0.9046143250688705,
+        "early_exit_pct": 28.615702479338843
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.37489795918367347,
+        "accuracy": 0.8708677685950413,
+        "layer_fraction": 0.8984159779614326,
+        "early_exit_pct": 30.47520661157025
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.4053061224489796,
+        "accuracy": 0.8708677685950413,
+        "layer_fraction": 0.8901515151515151,
+        "early_exit_pct": 32.95454545454545
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.4357142857142857,
+        "accuracy": 0.8698347107438017,
+        "layer_fraction": 0.8829201101928374,
+        "early_exit_pct": 35.12396694214876
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.4661224489795919,
+        "accuracy": 0.868801652892562,
+        "layer_fraction": 0.8736225895316805,
+        "early_exit_pct": 37.913223140495866
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.496530612244898,
+        "accuracy": 0.8698347107438017,
+        "layer_fraction": 0.8660468319559228,
+        "early_exit_pct": 40.18595041322314
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.5269387755102041,
+        "accuracy": 0.8667355371900827,
+        "layer_fraction": 0.8570936639118457,
+        "early_exit_pct": 42.87190082644628
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.5573469387755102,
+        "accuracy": 0.8667355371900827,
+        "layer_fraction": 0.8453856749311295,
+        "early_exit_pct": 46.38429752066116
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.5877551020408164,
+        "accuracy": 0.8636363636363636,
+        "layer_fraction": 0.8381542699724518,
+        "early_exit_pct": 48.553719008264466
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.6181632653061224,
+        "accuracy": 0.8615702479338843,
+        "layer_fraction": 0.8257575757575757,
+        "early_exit_pct": 52.27272727272727
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.6485714285714286,
+        "accuracy": 0.8574380165289256,
+        "layer_fraction": 0.8140495867768595,
+        "early_exit_pct": 55.78512396694215
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.6789795918367347,
+        "accuracy": 0.8543388429752066,
+        "layer_fraction": 0.8026859504132231,
+        "early_exit_pct": 59.19421487603306
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.7093877551020409,
+        "accuracy": 0.8378099173553719,
+        "layer_fraction": 0.787534435261708,
+        "early_exit_pct": 63.7396694214876
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.7397959183673469,
+        "accuracy": 0.8223140495867769,
+        "layer_fraction": 0.7665289256198347,
+        "early_exit_pct": 70.0413223140496
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.7702040816326531,
+        "accuracy": 0.8119834710743802,
+        "layer_fraction": 0.7548209366391184,
+        "early_exit_pct": 73.55371900826447
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.8006122448979592,
+        "accuracy": 0.8047520661157025,
+        "layer_fraction": 0.740702479338843,
+        "early_exit_pct": 77.78925619834712
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.8310204081632653,
+        "accuracy": 0.8006198347107438,
+        "layer_fraction": 0.7310606060606061,
+        "early_exit_pct": 80.68181818181817
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.8614285714285714,
+        "accuracy": 0.7933884297520661,
+        "layer_fraction": 0.7207300275482095,
+        "early_exit_pct": 83.78099173553719
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.8918367346938776,
+        "accuracy": 0.7861570247933884,
+        "layer_fraction": 0.7128099173553718,
+        "early_exit_pct": 86.15702479338843
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.9222448979591837,
+        "accuracy": 0.7789256198347108,
+        "layer_fraction": 0.7073002754820936,
+        "early_exit_pct": 87.80991735537191
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.9526530612244898,
+        "accuracy": 0.7737603305785123,
+        "layer_fraction": 0.7011019283746557,
+        "early_exit_pct": 89.6694214876033
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 0.9830612244897959,
+        "accuracy": 0.7644628099173554,
+        "layer_fraction": 0.6911157024793387,
+        "early_exit_pct": 92.66528925619835
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.013469387755102,
+        "accuracy": 0.756198347107438,
+        "layer_fraction": 0.6821625344352618,
+        "early_exit_pct": 95.35123966942149
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.0438775510204081,
+        "accuracy": 0.7541322314049587,
+        "layer_fraction": 0.6776859504132231,
+        "early_exit_pct": 96.69421487603306
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.0742857142857143,
+        "accuracy": 0.75,
+        "layer_fraction": 0.6707988980716254,
+        "early_exit_pct": 98.7603305785124
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.1046938775510204,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.1351020408163266,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.1655102040816328,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.195918367346939,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.2263265306122448,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.256734693877551,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.2871428571428571,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.3175510204081633,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.3479591836734695,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.3783673469387756,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.4087755102040818,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.4391836734693877,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.4695918367346938,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      },
+      {
+        "layer": 8,
+        "entropy_threshold": 1.5,
+        "accuracy": 0.7417355371900827,
+        "layer_fraction": 0.6666666666666666,
+        "early_exit_pct": 100.0
+      }
+    ]
+  },
+  "efficiency": {
+    "full_finbert_time_s": 3.041389226913452,
+    "full_finbert_throughput": 318.27560623747354,
+    "hybrid_time_s": 0.6882665157318115,
+    "hybrid_throughput": 1406.431924079231,
+    "runtime_speedup_vs_full": 4.41891208913402,
+    "stage_times_s": {
+      "4": 0.19283676147460938,
+      "8": 0.19283676147460938,
+      "final": 0.19283676147460938
+    },
+    "router_time_s": 0.1097562313079834,
+    "tfidf_time_s": 0.026287555694580078,
+    "tfidf_throughput": 36823.507337336065
+  },
+  "agreement_tier_analysis": {
+    "100": {
+      "n": 456,
+      "full_acc": 0.9649122807017544,
+      "hybrid_acc": 0.9605263157894737,
+      "tfidf_acc": 0.881578947368421,
+      "early_exit_pct": 33.99122807017544,
+      "avg_layers": 10.640350877192983
+    },
+    "75": {
+      "n": 240,
+      "full_acc": 0.8625,
+      "hybrid_acc": 0.8708333333333333,
+      "tfidf_acc": 0.725,
+      "early_exit_pct": 17.5,
+      "avg_layers": 11.3
+    },
+    "66": {
+      "n": 150,
+      "full_acc": 0.7933333333333333,
+      "hybrid_acc": 0.78,
+      "tfidf_acc": 0.49333333333333335,
+      "early_exit_pct": 6.666666666666667,
+      "avg_layers": 11.733333333333333
+    },
+    "50": {
+      "n": 122,
+      "full_acc": 0.7131147540983607,
+      "hybrid_acc": 0.680327868852459,
+      "tfidf_acc": 0.5737704918032787,
+      "early_exit_pct": 13.934426229508196,
+      "avg_layers": 11.442622950819672
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "dataset": "FiQA-SA",
+  "experiment": "B_KD_routing",
+  "teacher_accuracy": 0.5020576131687243,
+  "teacher_f1": 0.4903501361118933,
+  "student_accuracy": 0.7242798353909465,
+  "hybrid_accuracy": 0.7242798353909465,
+  "hybrid_f1": 0.6170098809086692,
+  "accuracy_retention": 1.442622950819672,
+  "teacher_usage_pct": 0.0,
+  "selected_tau": 0.0,
+  "ece": 0.1061139014768012,
+  "sweep": [
+    {
+      "tau": 0.0,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.02,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.04,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.06,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.08,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.1,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.12,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.14,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.16,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.18,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.2,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.22,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.24,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.26,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.28,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.3,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.32,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.34,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.36,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.38,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.0
+    },
+    {
+      "tau": 0.4,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 0.823045267489712
+    },
+    {
+      "tau": 0.42,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 2.05761316872428
+    },
+    {
+      "tau": 0.44,
+      "accuracy": 0.7242798353909465,
+      "retention": 1.442622950819672,
+      "teacher_pct": 4.526748971193416
+    },
+    {
+      "tau": 0.46,
+      "accuracy": 0.7160493827160493,
+      "retention": 1.4262295081967211,
+      "teacher_pct": 6.995884773662551
+    },
+    {
+      "tau": 0.48,
+      "accuracy": 0.720164609053498,
+      "retention": 1.4344262295081966,
+      "teacher_pct": 9.876543209876543
+    },
+    {
+      "tau": 0.5,
+      "accuracy": 0.7119341563786008,
+      "retention": 1.4180327868852458,
+      "teacher_pct": 12.757201646090536
+    },
+    {
+      "tau": 0.52,
+      "accuracy": 0.7078189300411523,
+      "retention": 1.4098360655737703,
+      "teacher_pct": 16.872427983539097
+    },
+    {
+      "tau": 0.54,
+      "accuracy": 0.7037037037037037,
+      "retention": 1.401639344262295,
+      "teacher_pct": 21.39917695473251
+    },
+    {
+      "tau": 0.56,
+      "accuracy": 0.7078189300411523,
+      "retention": 1.4098360655737703,
+      "teacher_pct": 25.102880658436217
+    },
+    {
+      "tau": 0.58,
+      "accuracy": 0.6831275720164609,
+      "retention": 1.360655737704918,
+      "teacher_pct": 30.04115226337449
+    },
+    {
+      "tau": 0.6,
+      "accuracy": 0.6707818930041153,
+      "retention": 1.3360655737704918,
+      "teacher_pct": 32.92181069958848
+    },
+    {
+      "tau": 0.62,
+      "accuracy": 0.6625514403292181,
+      "retention": 1.3196721311475408,
+      "teacher_pct": 36.21399176954733
+    },
+    {
+      "tau": 0.64,
+      "accuracy": 0.6460905349794238,
+      "retention": 1.286885245901639,
+      "teacher_pct": 41.56378600823045
+    },
+    {
+      "tau": 0.66,
+      "accuracy": 0.6255144032921811,
+      "retention": 1.2459016393442623,
+      "teacher_pct": 45.267489711934154
+    },
+    {
+      "tau": 0.68,
+      "accuracy": 0.6049382716049383,
+      "retention": 1.2049180327868851,
+      "teacher_pct": 49.794238683127574
+    },
+    {
+      "tau": 0.7000000000000001,
+      "accuracy": 0.588477366255144,
+      "retention": 1.1721311475409835,
+      "teacher_pct": 53.086419753086425
+    },
+    {
+      "tau": 0.72,
+      "accuracy": 0.5555555555555556,
+      "retention": 1.1065573770491803,
+      "teacher_pct": 60.49382716049383
+    },
+    {
+      "tau": 0.74,
+      "accuracy": 0.5432098765432098,
+      "retention": 1.081967213114754,
+      "teacher_pct": 65.84362139917695
+    },
+    {
+      "tau": 0.76,
+      "accuracy": 0.5349794238683128,
+      "retention": 1.0655737704918031,
+      "teacher_pct": 72.42798353909465
+    },
+    {
+      "tau": 0.78,
+      "accuracy": 0.51440329218107,
+      "retention": 1.0245901639344261,
+      "teacher_pct": 81.48148148148148
+    },
+    {
+      "tau": 0.8,
+      "accuracy": 0.5102880658436214,
+      "retention": 1.0163934426229508,
+      "teacher_pct": 86.0082304526749
+    },
+    {
+      "tau": 0.8200000000000001,
+      "accuracy": 0.5102880658436214,
+      "retention": 1.0163934426229508,
+      "teacher_pct": 89.7119341563786
+    },
+    {
+      "tau": 0.84,
+      "accuracy": 0.49794238683127573,
+      "retention": 0.9918032786885245,
+      "teacher_pct": 96.29629629629629
+    },
+    {
+      "tau": 0.86,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 98.76543209876543
+    },
+    {
+      "tau": 0.88,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 99.1769547325103
+    },
+    {
+      "tau": 0.9,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 100.0
+    },
+    {
+      "tau": 0.92,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 100.0
+    },
+    {
+      "tau": 0.9400000000000001,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 100.0
+    },
+    {
+      "tau": 0.96,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 100.0
+    },
+    {
+      "tau": 0.98,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 100.0
+    },
+    {
+      "tau": 1.0,
+      "accuracy": 0.5020576131687243,
+      "retention": 1.0,
+      "teacher_pct": 100.0
+    }
+  ],
+  "difficulty_analysis": {
+    "easy_n": 130,
+    "hard_n": 113,
+    "easy_teacher_acc": 0.7846153846153846,
+    "easy_hybrid_acc": 0.7846153846153846,
+    "easy_teacher_pct": 0.0,
+    "hard_teacher_acc": 0.17699115044247787,
+    "hard_hybrid_acc": 0.6548672566371682,
+    "hard_teacher_pct": 0.0
+  }
+}
